@@ -1,0 +1,31 @@
+[project]
+name = "integration-signoff-mcp"
+version = "0.1.0"
+description = "MCP server that reviews a merchant's payment gateway integration (webhooks, API usage, end-to-end flows, code) and issues a go-live sign-off"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Syed Aakhib" }]
+requires-python = ">=3.10"
+keywords = ["mcp", "payments", "payment-gateway", "webhooks", "integration-testing", "go-live"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Software Development :: Testing",
+]
+dependencies = ["mcp>=2.2.0"]
+
+[project.scripts]
+integration-signoff-mcp = "integration_signoff_mcp:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/integration_signoff_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

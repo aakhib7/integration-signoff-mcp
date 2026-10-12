@@ -1,0 +1,21 @@
+{
+  "webhook": {
+    "signature_header": "X-Gateway-Signature",
+    "timestamp_header": "",
+    "algorithm": "sha256",
+    "encoding": "base64",
+    "signed_payload": "{event_id}{body}",
+    "success_event_type": "payment.captured"
+  },
+  "api": {
+    "create_payment_path": "/v2/orders/?$",
+    "status_check_path": "/v2/orders/(?P<id>[^/?]+)/?$",
+    "refund_path": "/v2/refunds/?$",
+    "idempotency_header": "X-Idempotency-Key",
+    "reference_field": "merchant_order_id"
+  },
+  "flow": {
+    "required_scenarios": ["payment_success", "payment_failure", "pending_resolution", "duplicate_webhook",
+                           "callback_before_webhook", "full_refund", "amount_tampering"]
+  }
+}
